@@ -11,11 +11,11 @@
   "author": "yiskang <eason.kang@autodesk.com>",
   "license": "MIT",
   "dependencies": {
-    "forge-apis": "^0.4.5",
-    "json-server": "^0.16.1"
+    "forge-apis": "^0.8.6",
+    "json-server": "^0.16.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
-    "eslint": "^5.4.0"
+    "eslint": "^7.30.0"
   }
 }

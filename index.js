@@ -17,10 +17,12 @@
 /////////////////////////////////////////////////////////////////////
 
 const express = require('express');
+const cors = require('cors');
 const config = require( './config' );
 
 const server = express();
 
+server.use(cors());
 server.use( '/api/forge/oauth', require( './routes/oauth' ) );
 server.use((err, req, res, next) => {
   console.error(err);

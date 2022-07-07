@@ -16,38 +16,17 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////
 
-const jsonServer = require( 'json-server' );
-const path = require( 'path' );
-const routes = require( './routes.json' );
+const express = require('express');
 const config = require( './config' );
 
-const dbFile = path.join( __dirname, 'db.json' );
+const server = express();
 
-const server = jsonServer.create();
-const foreignKeySuffix = '_id';
-const router = jsonServer.router( dbFile , { foreignKeySuffix } );
-
-const defaultsOpts = {
-  static: path.join( process.cwd(), './public' ),
-  bodyParser: true
-};
-const middleware = jsonServer.defaults( defaultsOpts );
-const rewriter = jsonServer.rewriter( routes );
-
-server.use( middleware );
 server.use( '/api/forge/oauth', require( './routes/oauth' ) );
-server.use(( err, req, res, next ) => {
-  if( !err ) {
-    next();
-  } else {
-    console.error( err );
-    res.status( 401 ).json( err );
-  }
+server.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode).json(err);
 });
 
-server.use( rewriter );
-server.use( router );
-
-server.listen( config.port, () => {
-  console.log( 'JSON server running on port %d', config.port );
+server.listen( config.port, undefined, () => {
+  console.log( 'Token server running on port %d', config.port );
 });

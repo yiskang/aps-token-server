@@ -53,8 +53,49 @@ Then Run the server <br />
    npm start
    ```
 
-And visit http://127.0.0.1:3000/api/forge/oauth/token to obtain access token <br />
+And visit http://127.0.0.1:8090/api/forge/oauth/token to obtain access token <br />
 
+## Docker Build
+
+### Steps to build a Docker image
+
+1. Clone this repo
+
+   ```bash
+   git clone https://github.com/yiskang/forge-token-server.git
+   ```
+
+2. Build the image
+   ```bash
+   cd forge-token-server
+   docker build -t="forgetokenserver" .
+   ```
+
+    This will take a few minutes.
+
+3. Run the image's default command, which should start everything up. The `-p` option forwards the container's port 8090 to port 8090 on the host.
+
+   ```bash
+   docker run --name "forge-toekn-srv" -e "NODE_ENV=production" -e "FORGE_CLIENT_ID={YOUR_CLIENT_ID}" -e "FORGE_CLIENT_SECRET={YOUR_CLIENT_SECRET}" -e "FORGE_CALLBACK_URL=http://localhost:8090/api/forge/callback/oauth" -p "8090:8090" -d "forgetokenserver:latest"
+   ```
+
+6. Once everything has started up, you should be able to access the webapp via [http://localhost:8090/](http://localhost:8090/) on your host machine.
+
+   ```bash
+   open http://localhost:8090/
+   ```
+
+You can also login to the image and have a look around:
+
+   ```bash
+   docker run -i -t forge-toekn-srv /bin/bash
+   ```
+
+### Docker Environment Variables
+
+* `FORGE_CLIENT_ID` - Your Autodesk Forge app Client Id
+* `YOUR_CLIENT_SECRET` - Your Autodesk Forge app Client Secret
+* `FORGE_CALLBACK_URL` - Your Autodesk Forge app callback url (not used for this repo)
 
 ## License
 

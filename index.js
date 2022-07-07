@@ -18,17 +18,17 @@
 
 const express = require('express');
 const cors = require('cors');
-const config = require( './config' );
+const config = require('./config');
 
 const server = express();
 
 server.use(cors());
-server.use( '/api/forge/oauth', require( './routes/oauth' ) );
+server.use('/api/forge/oauth', require('./routes/oauth'));
 server.use((err, req, res, next) => {
   console.error(err);
   res.status(err.statusCode).json(err);
 });
 
-server.listen( config.port, undefined, () => {
-  console.log( 'Token server running on port %d', config.port );
+server.listen(config.port, '0.0.0.0', () => {
+  console.log('Token server running on port %d', config.port);
 });

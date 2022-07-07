@@ -29,5 +29,5 @@ module.exports = {
     // Required scope for the client-side viewer
     public: ['viewables:read']
   },
-  port: process.env.PORT ||  3000
+  port: process.env.PORT ||  8090
 };

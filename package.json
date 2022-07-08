@@ -2,7 +2,7 @@
   "name": "forge-token-server",
   "version": "1.0.0",
   "description": "This sample is demonstrating how to host a entry point for obtaining Forge access token.",
-  "main": "config.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"

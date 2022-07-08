@@ -29,6 +29,17 @@ server.use((err, req, res, next) => {
   res.status(err.statusCode).json(err);
 });
 
-server.listen(config.port, '0.0.0.0', () => {
+let serverDaemon = server.listen(config.port, '0.0.0.0', () => {
   console.log('Token server running on port %d', config.port);
 });
+
+const startGracefulShutdown = () => {
+  console.log('Starting shutdown of token server...');
+  serverDaemon.close(() => {
+    console.log('Token server shut down.');
+    process.exit(0);
+  });
+};
+
+process.on('SIGTERM', startGracefulShutdown);
+process.on('SIGINT', startGracefulShutdown);

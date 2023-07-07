@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by Developer Advocacy and Support
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -23,7 +23,7 @@ const config = require('./config');
 const server = express();
 
 server.use(cors());
-server.use('/api/forge/oauth', require('./routes/oauth'));
+server.use('/api/oauth', require('./routes/oauth'));
 server.use((err, req, res, next) => {
   console.error(err);
   res.status(err.statusCode).json(err);

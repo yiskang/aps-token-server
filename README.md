@@ -3,11 +3,11 @@
 ![Platforms](https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20linux-lightgray.svg)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
 
-# Autodesk Forge Token Server
+# Autodesk APS Token Server
 
 ## Overview
 
-This sample is demonstrating how to host a entry point for obtaining Forge access token.
+This sample is demonstrating how to host a entry point for obtaining APS access token.
 
 ## Requirements
 
@@ -26,25 +26,25 @@ This sample is demonstrating how to host a entry point for obtaining Forge acces
 <a name="UseOfTheSample"></a>
 ## Use of the sample
 
-Before starting the server, you have to set the Forge credentials up.
+Before starting the server, you have to set the APS credentials up.
 
 - Mac OSX/Linux (Terminal)
    ```bash
-   export FORGE_CLIENT_ID=<<YOUR_CLIENT_ID_FROM_DEVELOPER_PORTAL>>
-   export FORGE_CLIENT_SECRET=<<YOUR_CLIENT_SECRET>>
+   export APS_CLIENT_ID=<<YOUR_CLIENT_ID_FROM_DEVELOPER_PORTAL>>
+   export APS_CLIENT_SECRET=<<YOUR_CLIENT_SECRET>>
    ```
 
 - Windows (use **Node.js command line** from Start menu)
    ```bash
-   set FORGE_CLIENT_ID=<<YOUR_CLIENT_ID_FROM_DEVELOPER_PORTAL>>
-   set FORGE_CLIENT_SECRET=<<YOUR_CLIENT_SECRET>>
+   set APS_CLIENT_ID=<<YOUR_CLIENT_ID_FROM_DEVELOPER_PORTAL>>
+   set APS_CLIENT_SECRET=<<YOUR_CLIENT_SECRET>>
    ```
 
 
 - Windows (use **Powershell** from Start menu)
    ```bash
-   $env:FORGE_CLIENT_ID="<<YOUR_CLIENT_ID_FROM_DEVELOPER_PORTAL>>"
-   $env:FORGE_CLIENT_SECRET="<<YOUR_CLIENT_SECRET>>"
+   $env:APS_CLIENT_ID="<<YOUR_CLIENT_ID_FROM_DEVELOPER_PORTAL>>"
+   $env:APS_CLIENT_SECRET="<<YOUR_CLIENT_SECRET>>"
    ```
 
 
@@ -53,7 +53,7 @@ Then Run the server <br />
    npm start
    ```
 
-And visit http://127.0.0.1:8090/api/forge/oauth/token to obtain access token <br />
+And visit http://127.0.0.1:8090/api/oauth/token to obtain access token <br />
 
 ## Docker Build
 
@@ -62,13 +62,13 @@ And visit http://127.0.0.1:8090/api/forge/oauth/token to obtain access token <br
 1. Clone this repo
 
    ```bash
-   git clone https://github.com/yiskang/forge-token-server.git
+   git clone https://github.com/yiskang/aps-token-server.git
    ```
 
 2. Build the image
    ```bash
-   cd forge-token-server
-   docker build -t="forgetokenserver" .
+   cd aps-token-server
+   docker build -t="aps-token-server" .
    ```
 
     This will take a few minutes.
@@ -76,7 +76,7 @@ And visit http://127.0.0.1:8090/api/forge/oauth/token to obtain access token <br
 3. Run the image's default command, which should start everything up. The `-p` option forwards the container's port 8090 to port 8090 on the host.
 
    ```bash
-   docker run --name "forge-toekn-srv" -e "NODE_ENV=production" -e "FORGE_CLIENT_ID={YOUR_CLIENT_ID}" -e "FORGE_CLIENT_SECRET={YOUR_CLIENT_SECRET}" -e "FORGE_CALLBACK_URL=http://localhost:8090/api/forge/callback/oauth" -p "8090:8090" -d "forgetokenserver:latest"
+   docker run --name "aps-toekn-srv" -e "NODE_ENV=production" -e "APS_CLIENT_ID={YOUR_CLIENT_ID}" -e "APS_CLIENT_SECRET={YOUR_CLIENT_SECRET}" -e "APS_CALLBACK_URL=http://localhost:8090/api/callback/oauth" -p "8090:8090" -d "aps-token-server:latest"
    ```
 
 6. Once everything has started up, you should be able to access the webapp via [http://localhost:8090/](http://localhost:8090/) on your host machine.
@@ -88,14 +88,14 @@ And visit http://127.0.0.1:8090/api/forge/oauth/token to obtain access token <br
 You can also login to the image and have a look around:
 
    ```bash
-   docker run -i -t forge-toekn-srv /bin/bash
+   docker run -i -t aps-toekn-srv /bin/bash
    ```
 
 ### Docker Environment Variables
 
-* `FORGE_CLIENT_ID` - Your Autodesk Forge app Client Id
-* `YOUR_CLIENT_SECRET` - Your Autodesk Forge app Client Secret
-* `FORGE_CALLBACK_URL` - Your Autodesk Forge app callback url (not used for this repo)
+* `APS_CLIENT_ID` - Your Autodesk APS app Client Id
+* `APS_CLIENT_SECRET` - Your Autodesk APS app Client Secret
+* `APS_CALLBACK_URL` - Your Autodesk APS app callback url (not used for this repo)
 
 ## License
 
@@ -105,6 +105,5 @@ Please see the [LICENSE](LICENSE) file for full details.
 ## Written by
 
 Eason Kang <br />
-Forge Partner Development <br />
-https://developer.autodesk.com/ <br />
-https://forge.autodesk.com/blog <br />
+Developer Advocacy and Support <br />
+https://aps.autodesk.com/blog <br />

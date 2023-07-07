@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  forgetokenserver:
-    image: forgetokenserver
+  apstokenserver:
+    image: aps-token-server
     build:
       context: .
       dockerfile: ./Dockerfile
